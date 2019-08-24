@@ -1,0 +1,25 @@
+from PIL import Image
+from skimage.io import imread
+import numpy as np
+
+img = Image.open('mochee.png')
+data = img.getdata()
+
+r = [d[0] for d in data]
+g = [d[1] for d in data]
+b = [d[2] for d in data]
+
+r = np.asarray(r)
+g = np.asarray(g)
+b = np.asarray(b)
+
+r = r.astype(int)
+
+with open('red.txt', 'wb') as outfile:
+    np.savetxt(outfile, r)
+
+with open('green.txt', 'wb') as outfile:
+    np.savetxt(outfile, g)
+
+with open('blue.txt', 'wb') as outfile:
+    np.savetxt(outfile, b)
